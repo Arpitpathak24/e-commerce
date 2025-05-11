@@ -1,0 +1,40 @@
+<%- include('partials/header', { title: 'Your Cart' }) %>
+
+<section class="text-center py-5" style="background: linear-gradient(to right, #00c9ff, #92fe9d);">
+  <div class="container">
+    <h1 class="text-white mb-4" data-aos="fade-down">Your Cart</h1>
+    <p class="text-white-50 mb-5" data-aos="fade-up">Review and finalize your purchase below.</p>
+
+    <% if (cart.length === 0) { %>
+      <div class="alert alert-warning" role="alert">
+        Your cart is currently empty. Add some products from the shop!
+      </div>
+    <% } else { %>
+      <div class="row g-4">
+        <% cart.forEach((item, index) => { %>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+            <div class="card shadow-lg h-100">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-success"><%= item.name %></h5>
+                <p class="card-text"><strong>Ingredients:</strong> <%= item.ingredients %></p>
+                <p class="text-muted"><strong>Benefits:</strong> <%= item.benefits %></p>
+
+                <!-- Form to Remove Item -->
+                <form action="/remove-from-cart" method="POST">
+                  <input type="hidden" name="itemIndex" value="<%= index %>">
+                  <button type="submit" class="btn btn-danger mt-auto">Remove</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="/checkout" class="btn btn-outline-dark btn-lg">Proceed to Checkout</a>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

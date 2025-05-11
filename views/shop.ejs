@@ -1,0 +1,69 @@
+<%- include('partials/header', { title: 'Organic Shop' }) %>
+
+<section class="text-center py-5" style="background: linear-gradient(to right, #00c9ff, #92fe9d);">
+  <div class="container">
+    <h1 class="text-white mb-4" data-aos="fade-down">Organic Juices & Breakfast</h1>
+    <p class="text-white-50 mb-5" data-aos="fade-up">Natural goodness crafted to boost your health, energy, and wellness.</p>
+
+    <div class="row g-4">
+      <% const products = [
+        { name: "CocoHydrate", ingredients: "Coconut water", benefits: "Hydration, electrolytes" },
+        { name: "Sunless CocoHydrate", ingredients: "Early harvested coconut water", benefits: "Shelf-stable hydration" },
+        { name: "Tender Elixir", ingredients: "Tender coconut pulp & water", benefits: "Gut health, refreshment" },
+        { name: "No-Sun Tender Elixir", ingredients: "Preserved tender coconut", benefits: "Convenience, nutrient retention" },
+        { name: "Green Glow Juice", ingredients: "Spinach, Cucumber, Mint", benefits: "Detox, cooling, skin glow" },
+        { name: "Red Root Revive", ingredients: "Beetroot, Carrot, Ginger", benefits: "Stamina, blood purification" },
+        { name: "Sunshine Carrot Shot", ingredients: "Carrot, Lemon, Honey", benefits: "Vitamin A, eye health" },
+        { name: "ABC Power Punch", ingredients: "Apple, Beetroot, Carrot", benefits: "Energy, immunity, liver cleanse" },
+        { name: "Coconut Blossom Tonic", ingredients: "Coconut nectar, Tulsi", benefits: "Hormone balance, antioxidants" },
+        { name: "Dr. Manish’s EnergiX", ingredients: "Ashwagandha, Dates, Banana, Almond milk", benefits: "Energy, stress relief" },
+        { name: "NutriGain Shake", ingredients: "Almonds, Cashew, Dates, Milk, Banana", benefits: "Healthy weight gain" },
+        { name: "Ruby Drop Juice", ingredients: "Pomegranate", benefits: "Heart health, antioxidants" },
+        { name: "No-Masala Steam Meal", ingredients: "Idlis, veggies, chutney", benefits: "Easy digestion" },
+        { name: "Amla Radiance Shot", ingredients: "Amla, Tulsi, Honey", benefits: "Skin glow, hair growth" },
+        { name: "Slim & Sip", ingredients: "Lemon, Ginger, Green tea", benefits: "Fat burning, metabolism" },
+        { name: "CancerShield Juice", ingredients: "Wheatgrass, Turmeric, Carrot", benefits: "Cell repair, anti-cancer" },
+        { name: "Hemoboost Elixir", ingredients: "Beetroot, Pomegranate, Spinach", benefits: "Iron source, RBC booster" },
+        { name: "Golden Glow Tonic", ingredients: "Turmeric, Black pepper, Lemon", benefits: "Immunity, anti-inflammatory" },
+        { name: "DigestiCool Juice", ingredients: "Fennel, Mint, Lemon", benefits: "Cool gut, digestion" },
+        { name: "Skin Bliss Elixir", ingredients: "Aloe vera, Cucumber, Amla", benefits: "Skin hydration" },
+        { name: "Brainy Brew", ingredients: "Brahmi, Almonds, Dates, Coconut milk", benefits: "Focus, memory support" },
+        { name: "Liver Detox Punch", ingredients: "Dandelion root, Beetroot, Apple", benefits: "Liver cleanse" },
+        { name: "Cholesterol Cutter", ingredients: "Garlic, Ginger, Lemon", benefits: "Heart protection" },
+        { name: "Immuno Shot", ingredients: "Tulsi, Turmeric, Clove", benefits: "Cold/flu defense" },
+        { name: "Cooling Summer Blend", ingredients: "Watermelon, Mint, Lime", benefits: "Electrolytes, cooling" },
+        { name: "Iron Rich Bliss", ingredients: "Moringa, Dates, Pomegranate", benefits: "Iron boost" },
+        { name: "Belly Calm", ingredients: "Banana, Fennel, Cardamom", benefits: "Gut soothing" },
+        { name: "Lung Detox Juice", ingredients: "Pineapple, Ginger, Lemon", benefits: "Lung cleansing" },
+        { name: "Post-Workout Refill", ingredients: "Coconut water, Banana, Oats", benefits: "Muscle recovery" },
+        { name: "Hormone Harmony Juice", ingredients: "Flaxseed, Dates, Ashwagandha", benefits: "Hormonal balance" },
+        { name: "Kidney Cleanse Shot", ingredients: "Cranberry, Parsley, Lemon", benefits: "Kidney detox" },
+        { name: "Thyroid Support Juice", ingredients: "Kelp, Pineapple, Ashwagandha", benefits: "Thyroid function" },
+        { name: "Gut Reboot Elixir", ingredients: "Fermented rice water, Curry leaves", benefits: "Probiotic-rich" },
+        { name: "Fertility Boost Mix", ingredients: "Maca root, Beetroot, Almonds", benefits: "Reproductive health" },
+        { name: "Natural ElectroLite", ingredients: "Lemon, Sea salt, Coconut water", benefits: "Hydration" },
+      ]; %>
+
+      <% products.forEach((product, index) => { %>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+          <div class="card shadow-lg h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-success"><%= product.name %></h5>
+              <p class="card-text"><strong>Ingredients:</strong> <%= product.ingredients %></p>
+              <p class="text-muted"><strong>Benefits:</strong> <%= product.benefits %></p>
+              <form action="/add-to-cart" method="POST" class="mt-auto">
+                <input type="hidden" name="name" value="<%= product.name %>">
+                <input type="hidden" name="ingredients" value="<%= product.ingredients %>">
+                <input type="hidden" name="benefits" value="<%= product.benefits %>">
+                <button type="submit" class="btn btn-outline-success w-100">Add to Cart</button>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

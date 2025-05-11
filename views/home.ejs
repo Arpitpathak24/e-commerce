@@ -1,0 +1,72 @@
+<%- include('partials/header', { title: 'Home' }) %>
+
+<!-- Hero Banner -->
+<section class="hero text-white text-center d-flex align-items-center justify-content-center">
+  <div data-aos="fade-down">
+    <h1 class="display-4 fw-bold">Discover Amazing Products</h1>
+    <p class="lead">High quality. Great prices. Delivered fast.</p>
+    <a href="/shop" class="btn btn-warning btn-lg mt-3">Explore Shop</a>
+  </div>
+</section>
+
+<!-- Featured Categories -->
+<section class="bg-light py-5">
+  <div class="container text-center" data-aos="fade-up">
+    <h2 class="mb-4">Browse Categories</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="flip-left"><div class="p-4 shadow rounded bg-white">👚 Clothing</div></div>
+      <div class="col-md-4" data-aos="flip-up"><div class="p-4 shadow rounded bg-white">📱 Electronics</div></div>
+      <div class="col-md-4" data-aos="flip-right"><div class="p-4 shadow rounded bg-white">🏠 Home Goods</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="py-5" style="background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%)">
+  <div class="container text-center" data-aos="fade-up">
+    <h2 class="text-dark mb-5">Top Picks</h2>
+    <div class="row">
+      <% for(let i=1; i<=3; i++) { %>
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="<%= i * 150 %>">
+          <div class="card border-0 shadow-lg">
+            <img src="/images/sample.jpg" class="card-img-top" alt="Product">
+            <div class="card-body">
+              <h5 class="card-title text-primary">Product <%= i %></h5>
+              <p class="card-text text-dark">$<%= (i * 10 + 9.99).toFixed(2) %></p>
+              <a href="/product/<%= i %>" class="btn btn-outline-dark">View Details</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="bg-white py-5">
+  <div class="container text-center" data-aos="fade-up">
+    <h2 class="mb-4">What Our Customers Say</h2>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="p-3 bg-light rounded shadow-sm">“Amazing service & fast delivery!” – Anna</div></div>
+      <div class="col-md-4"><div class="p-3 bg-light rounded shadow-sm">“Great products at affordable prices.” – James</div></div>
+      <div class="col-md-4"><div class="p-3 bg-light rounded shadow-sm">“Will definitely order again!” – Priya</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="text-white text-center py-5" style="background: linear-gradient(90deg, #8360c3, #2ebf91);">
+  <div class="container" data-aos="fade-up">
+    <h3>Subscribe for Exclusive Deals</h3>
+    <form class="row justify-content-center mt-4">
+      <div class="col-md-6">
+        <input type="email" class="form-control" placeholder="Enter your email" required>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-light w-100">Subscribe</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

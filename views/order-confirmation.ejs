@@ -1,0 +1,29 @@
+<%- include('partials/header', { title: 'Order Confirmation' }) %>
+
+<section class="text-center py-5">
+  <div class="container">
+    <h1 class="text-success mb-4">Thank You for Your Order!</h1>
+    <p class="text-muted">Your order has been successfully placed. Here are your order details:</p>
+
+    <h4>Order Summary:</h4>
+    <p><strong>Name:</strong> <%= order.fullName %></p>
+    <p><strong>Email:</strong> <%= order.email %></p>
+    <p><strong>Phone:</strong> <%= order.phone %></p>
+    <p><strong>Shipping Address:</strong> <%= order.address %>, <%= order.city %>, <%= order.zip %>, <%= order.country %></p>
+
+    <h4 class="mt-4">Order Items:</h4>
+    <ul class="list-group">
+      <% order.cart.forEach(item => { %>
+        <li class="list-group-item">
+          <%= item.name %> - $<%= item.price %>
+        </li>
+      <% }); %>
+    </ul>
+
+    <h4 class="mt-4">Total: $<%= order.total %></h4>
+
+    <p class="mt-4">We will send you a confirmation email shortly.</p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

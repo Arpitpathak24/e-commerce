@@ -1,0 +1,56 @@
+<%- include('partials/header', { title: 'Register' }) %>
+
+<div class="container py-5">
+  <h2 class="mb-4 text-center">Sign Up</h2>
+  <form onsubmit="handleRegister(event)" class="mx-auto" style="max-width: 400px;">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100">Sign Up</button>
+    <p class="text-center mt-3">
+      Already have an account? <a href="/login">Login here</a>
+    </p>
+  </form>
+</div>
+
+<!-- Firebase App SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+<script>
+  // Your actual Firebase config goes here
+  const firebaseConfig = {
+  apiKey: "AIzaSyDjLDxu7tbNYruGyOWy3wUiJXiLUTS2t9w",
+  authDomain: "e-commerce-48f66.firebaseapp.com",
+  projectId: "e-commerce-48f66",
+  storageBucket: "e-commerce-48f66.firebasestorage.app",
+  messagingSenderId: "577183571944",
+  appId: "1:577183571944:web:53958458a841b69643ce5d",
+  measurementId: "G-9N9ND8J3Z0"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  function handleRegister(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        alert("Registration successful!");
+        window.location.href = "/login";
+      })
+      .catch(error => {
+        console.error("Registration error:", error);
+        alert("Signup failed: " + error.message);
+      });
+  }
+</script>
+
+<%- include('partials/footer') %>
