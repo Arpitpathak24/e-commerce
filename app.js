@@ -5,7 +5,8 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 const admin = require('firebase-admin');
 
-const serviceAccount = require('./firebase-service-account.json');
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG);
+
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
