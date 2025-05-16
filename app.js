@@ -1,3 +1,5 @@
+require('dotenv').config(); // Must be at the top
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -5,10 +7,10 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 const admin = require('firebase-admin');
 
+// Load Firebase service account from environment variable
 const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG);
 
-
-// Initialize Firebase Admin SDK
+// Initialize Firebase Admin SDK once
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
@@ -73,7 +75,7 @@ app.post('/remove-from-cart', (req, res) => {
 app.post('/subscribe', (req, res) => {
   const email = req.body.email;
   console.log(`New subscriber: ${email}`);
-  // Save to DB, service, or file here
+  // Save to DB or file if needed
   res.redirect('/?subscribed=true');
 });
 
@@ -85,13 +87,14 @@ const transporter = nodemailer.createTransport({
     pass: 'your-email-password'
   }
 });
+
+// Skin categories (example data)
 const skinCategories = [
   { name: 'Acne', slug: 'acne', image: '/images/categories/acne.jpg' },
   { name: 'Acne Marks', slug: 'acne-marks', image: '/images/categories/acne-marks.jpg' },
   { name: 'Open Pores', slug: 'open-pores', image: '/images/categories/open-pores.jpg' },
   { name: 'Pigmentation', slug: 'pigmentation', image: '/images/categories/pigmentation.jpg' },
 ];
-
 
 app.post('/complete-order', checkAuth, (req, res) => {
   const {
