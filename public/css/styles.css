@@ -113,3 +113,18 @@ section {
         width: 33.3333%;
     }
 }
+.category-circle {
+    width: 70px;
+    height: 70px;
+    border: 2px solid #ddd;
+    transition: transform 0.2s ease;
+  }
+
+  .category-circle:hover {
+    transform: scale(1.05);
+    border-color: #8e2de2;
+  }
+
+  .object-fit-cover {
+    object-fit: cover;
+  }

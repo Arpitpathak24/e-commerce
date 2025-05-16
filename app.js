@@ -70,6 +70,13 @@ app.post('/remove-from-cart', (req, res) => {
   res.redirect('/cart');
 });
 
+app.post('/subscribe', (req, res) => {
+  const email = req.body.email;
+  console.log(`New subscriber: ${email}`);
+  // Save to DB, service, or file here
+  res.redirect('/?subscribed=true');
+});
+
 // Nodemailer for sending order confirmation
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -78,6 +85,13 @@ const transporter = nodemailer.createTransport({
     pass: 'your-email-password'
   }
 });
+const skinCategories = [
+  { name: 'Acne', slug: 'acne', image: '/images/categories/acne.jpg' },
+  { name: 'Acne Marks', slug: 'acne-marks', image: '/images/categories/acne-marks.jpg' },
+  { name: 'Open Pores', slug: 'open-pores', image: '/images/categories/open-pores.jpg' },
+  { name: 'Pigmentation', slug: 'pigmentation', image: '/images/categories/pigmentation.jpg' },
+];
+
 
 app.post('/complete-order', checkAuth, (req, res) => {
   const {
